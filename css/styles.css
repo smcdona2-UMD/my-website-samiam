@@ -1,0 +1,756 @@
+/* ========================================
+   CSS Variables - Dark Green Theme
+   ======================================== */
+:root {
+    /* Colors */
+    --color-background: #2d3d2f;
+    --color-text: #e8e4dc;
+    --color-text-muted: #b8b4ac;
+    --color-border: #5a6b5c;
+    --color-border-light: #7a8b7c;
+
+    /* Typography */
+    --font-family: 'Roboto Mono', monospace;
+    --font-family-heading: 'Roboto Serif', Georgia, serif;
+    --font-size-base: 20px;
+    --font-size-heading: 32px;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 5rem;
+
+    /* Layout */
+    --max-width: 1200px;
+    --container-padding: 2rem;
+
+    /* Other */
+    --border-radius: 4px;
+    --transition: 0.2s ease;
+}
+
+/* ========================================
+   Reset & Base Styles
+   ======================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+:focus {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-text);
+    color: var(--color-background);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius);
+    z-index: 9999;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: var(--spacing-xs);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ========================================
+   Links
+   ======================================== */
+a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity var(--transition);
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* ========================================
+   Layout
+   ======================================== */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* ========================================
+   Header & Navigation
+   ======================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-image: url('../images/monstera-bg.jpg');
+    background-size: cover;
+    background-position: center top;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(45, 61, 47, 0.5);
+    z-index: -1;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-sm) var(--container-padding);
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.logo {
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.logo-sailboat {
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    transition: transform var(--transition);
+}
+
+.logo-sailboat:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-xl);
+}
+
+.nav-links a {
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: opacity var(--transition);
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.nav-links a.active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+}
+
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+}
+
+/* ========================================
+   Panel System
+   ======================================== */
+.main-panels {
+    min-height: 100vh;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: calc(60px + var(--spacing-xl)) var(--container-padding) var(--spacing-xl);
+}
+
+.panel {
+    display: none;
+    opacity: 0;
+    width: 100%;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.panel-active {
+    display: block;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.panel-content {
+    width: 100%;
+    position: relative;
+}
+
+/* ========================================
+   Panel Pages (Full viewport height)
+   ======================================== */
+.panel-page {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ========================================
+   Home/Hero Panel
+   ======================================== */
+#home {
+    position: relative;
+}
+
+#home.panel-active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/monstera-bg.jpg');
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--container-padding);
+}
+
+#home .panel-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hero-statement {
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    line-height: 1.8;
+    max-width: 650px;
+    background: rgba(232, 228, 220, 0.9);
+    color: #1a1a1a;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+}
+
+.hero-statement strong {
+    font-weight: 400;
+}
+
+.hero-statement em {
+    font-style: italic;
+}
+
+/* ========================================
+   Travel Panel
+   ======================================== */
+
+.travel-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.travel-text {
+    max-width: 400px;
+}
+
+.travel-text p {
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+}
+
+.travel-photos {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.photo-center {
+    width: 280px;
+    height: auto;
+}
+
+.photo-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.photo-top {
+    width: 260px;
+    height: auto;
+}
+
+.photo-bottom {
+    width: 260px;
+    height: auto;
+}
+
+/* ========================================
+   Section Headings
+   ======================================== */
+h2 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-heading);
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+}
+
+h3 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ========================================
+   About Section
+   ======================================== */
+.about-education {
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-education p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.about-languages {
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-languages p {
+    margin-top: var(--spacing-xs);
+}
+
+.about-accomplishments {
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-accomplishments p {
+    margin-bottom: var(--spacing-xs);
+}
+
+.about-illustration {
+    margin-top: var(--spacing-xl);
+}
+
+.about-illustration img {
+    max-width: 220px;
+    height: auto;
+}
+
+.illustration-credit {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-xs);
+    font-style: italic;
+}
+
+/* ========================================
+   Research Section
+   ======================================== */
+.section-intro {
+    margin-bottom: var(--spacing-lg);
+}
+
+.research-categories {
+    margin-bottom: var(--spacing-lg);
+}
+
+.research-category {
+    margin-bottom: var(--spacing-lg);
+}
+
+.research-category h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.research-category ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+}
+
+.research-category li {
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.6;
+}
+
+.scholar-link {
+    margin-bottom: var(--spacing-lg);
+}
+
+.research-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-family);
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: all var(--transition);
+    cursor: pointer;
+}
+
+.btn-outline {
+    background: rgba(232, 228, 220, 0.9);
+    color: #1a2e23;
+    border: 1px solid rgba(232, 228, 220, 0.9);
+}
+
+.btn-outline:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    opacity: 1;
+}
+
+.button-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ========================================
+   Teaching Section
+   ======================================== */
+.teaching-group {
+    margin-bottom: var(--spacing-xl);
+}
+
+.teaching-group h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+.course {
+    margin-bottom: var(--spacing-lg);
+}
+
+.course-name {
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.course-details {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.course-students {
+    color: var(--color-text-muted);
+}
+
+/* ========================================
+   Beyond Section
+   ======================================== */
+.beyond-intro {
+    margin-bottom: var(--spacing-lg);
+    max-width: 900px;
+}
+
+.beyond-text {
+    margin-bottom: var(--spacing-lg);
+    max-width: 900px;
+}
+
+.bonus-label {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+    padding: var(--spacing-xl) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.footer p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.social-links a {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+/* ========================================
+   Mobile Responsive
+   ======================================== */
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 1.25rem;
+        --font-size-base: 16px;
+        --font-size-heading: 26px;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(45, 61, 47, 0.95);
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+        display: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .main-panels {
+        padding-top: calc(60px + var(--spacing-lg));
+    }
+
+    .home-intro {
+        padding: var(--spacing-xl) 0;
+    }
+
+    .panel-page {
+        min-height: calc(100vh - 100px);
+    }
+
+    #home.panel-active {
+        padding: 0 var(--container-padding);
+    }
+
+    .hero-statement {
+        max-width: 100%;
+    }
+
+    .travel-layout {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .travel-text {
+        max-width: 100%;
+    }
+
+    .travel-photos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .photo-center {
+        width: 100%;
+        height: auto;
+    }
+
+    .photo-stack {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .photo-top,
+    .photo-bottom {
+        width: 100%;
+        height: auto;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group .btn {
+        text-align: center;
+    }
+
+    .research-buttons {
+        flex-direction: column;
+    }
+
+    .research-buttons .btn {
+        text-align: center;
+    }
+
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .travel-layout {
+        grid-template-columns: 300px 1fr;
+    }
+
+    .hero-statement {
+        max-width: 450px;
+    }
+
+    .photo-center {
+        width: 200px;
+        height: auto;
+    }
+
+    .photo-top {
+        width: 180px;
+        height: auto;
+    }
+
+    .photo-bottom {
+        width: 180px;
+        height: auto;
+    }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+    .header, .nav-toggle {
+        display: none;
+    }
+
+    body {
+        font-size: 12pt;
+        color: black;
+        background: white;
+    }
+
+    .panel {
+        display: block;
+        opacity: 1;
+        page-break-after: always;
+    }
+
+    a {
+        color: black;
+    }
+}
+
+/* ========================================
+   High Contrast Mode
+   ======================================== */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text: #ffffff;
+        --color-border: #ffffff;
+    }
+}
