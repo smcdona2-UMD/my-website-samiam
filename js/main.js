@@ -7,6 +7,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const panels = document.querySelectorAll('.panel');
     const panelLinks = document.querySelectorAll('[data-panel]');
 
+    // Animated counter function
+    function animateCounter(element) {
+        const target = parseInt(element.dataset.target);
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function formatWithDigits(num, isFinal) {
+            const digits = num.toString().split('');
+            let html = digits.map(d => `<span class="digit">${d}</span>`).join('');
+            if (isFinal) {
+                html += '<span class="plus">+</span>';
+            }
+            return html;
+        }
+
+        function updateCount(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(easeOut * target);
+
+            element.innerHTML = formatWithDigits(current, false);
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCount);
+            } else {
+                element.innerHTML = formatWithDigits(target, true);
+            }
+        }
+
+        requestAnimationFrame(updateCount);
+    }
+
     function showPanel(panelId) {
         // Hide all panels
         panels.forEach(panel => {
@@ -18,6 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (targetPanel) {
             setTimeout(() => {
                 targetPanel.classList.add('panel-active');
+
+                // Trigger counter animation on teaching panel
+                if (panelId === 'teaching') {
+                    const counter = targetPanel.querySelector('.counter-number');
+                    if (counter) {
+                        counter.innerHTML = '<span class="digit">0</span>';
+                        animateCounter(counter);
+                    }
+                }
             }, 50);
         }
 
