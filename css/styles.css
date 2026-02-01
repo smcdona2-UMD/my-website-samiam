@@ -396,7 +396,7 @@ h2 {
 }
 
 h3 {
-    font-family: var(--font-family);
+    font-family: var(--font-family-heading);
     font-size: var(--font-size-base);
     font-weight: 500;
     margin-bottom: var(--spacing-sm);
@@ -411,6 +411,7 @@ h3 {
 
 .about-education p {
     margin-bottom: var(--spacing-xs);
+    font-size: 0.85em;
 }
 
 .about-languages {
@@ -419,6 +420,16 @@ h3 {
 
 .about-languages p {
     margin-top: var(--spacing-xs);
+    font-size: 0.85em;
+}
+
+.about-advocacy {
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-advocacy p {
+    margin-top: var(--spacing-xs);
+    font-size: 0.85em;
 }
 
 .about-accomplishments {
@@ -427,22 +438,30 @@ h3 {
 
 .about-accomplishments p {
     margin-bottom: var(--spacing-xs);
+    font-size: 0.85em;
 }
 
 .about-illustration {
-    margin-top: var(--spacing-xl);
+    float: right;
+    margin: 0 0 var(--spacing-lg) var(--spacing-xl);
+    background: rgba(232, 228, 220, 0.9);
+    padding: 12px 12px 8px 12px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    transform: rotate(3deg);
+    max-width: 250px;
 }
 
 .about-illustration img {
-    max-width: 220px;
+    max-width: 100%;
     height: auto;
 }
 
 .illustration-credit {
-    font-size: 12px;
-    color: var(--color-text-muted);
-    margin-top: var(--spacing-xs);
+    font-size: 11px;
+    color: #555;
+    margin-top: 8px;
     font-style: italic;
+    text-align: center;
 }
 
 /* ========================================
@@ -453,29 +472,53 @@ h3 {
 }
 
 .research-categories {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
+    max-width: 800px;
 }
 
-.research-category {
-    margin-bottom: var(--spacing-lg);
+.research-block {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--color-border-light);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    transition: border-color var(--transition);
 }
 
-.research-category h3 {
+.research-block:hover {
+    border-left-color: var(--color-text);
+}
+
+.research-block h3 {
     margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
 }
 
-.research-category ul {
-    list-style: disc;
-    padding-left: 1.25rem;
+.research-block ul {
+    list-style: none;
+    padding-left: 0;
 }
 
-.research-category li {
-    margin-bottom: var(--spacing-xs);
+.research-block li {
+    margin-bottom: var(--spacing-sm);
     line-height: 1.6;
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+}
+
+.research-block li:last-child {
+    margin-bottom: 0;
+}
+
+.research-block a {
+    color: var(--color-text);
 }
 
 .scholar-link {
     margin-bottom: var(--spacing-lg);
+    font-size: 0.85em;
 }
 
 .research-buttons {
@@ -520,6 +563,42 @@ h3 {
 /* ========================================
    Teaching Section
    ======================================== */
+.student-counter {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.counter-number {
+    display: inline-flex;
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--color-text);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.counter-number .digit {
+    padding: 0.4rem 0.5rem;
+    border-right: 1px solid var(--color-border);
+}
+
+.counter-number .digit:last-child {
+    border-right: none;
+}
+
+.counter-number .plus {
+    padding: 0.4rem 0.5rem;
+    border-left: 1px solid var(--color-border);
+}
+
+.counter-label {
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+}
+
 .teaching-group {
     margin-bottom: var(--spacing-xl);
 }
@@ -535,15 +614,18 @@ h3 {
 .course-name {
     font-weight: 500;
     margin-bottom: var(--spacing-xs);
+    font-size: 0.85em;
 }
 
 .course-details {
     color: var(--color-text-muted);
     margin-bottom: var(--spacing-xs);
+    font-size: 0.85em;
 }
 
 .course-students {
     color: var(--color-text-muted);
+    font-size: 0.85em;
 }
 
 /* ========================================
@@ -561,6 +643,64 @@ h3 {
 
 .bonus-label {
     margin-bottom: var(--spacing-sm);
+}
+
+.beyond-links {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin-bottom: var(--spacing-lg);
+    font-size: 0.85em;
+}
+
+.beyond-links li {
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Document Accent Blocks */
+.document-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    max-width: 700px;
+}
+
+.document-block {
+    display: block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--color-border-light);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    text-decoration: none;
+    transition: background var(--transition), border-color var(--transition);
+}
+
+.document-block:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--color-text);
+}
+
+.document-title {
+    display: block;
+    color: var(--color-text);
+    font-family: var(--font-family-heading);
+    font-size: 1.05rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.document-desc {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.document-date {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    margin-top: var(--spacing-xs);
+    opacity: 0.7;
 }
 
 /* ========================================
@@ -585,6 +725,11 @@ h3 {
 .footer p {
     font-size: 0.875rem;
     color: var(--color-text-muted);
+}
+
+.footer .bg-credit {
+    font-size: 0.75rem;
+    opacity: 0.8;
 }
 
 .social-links a {
@@ -691,6 +836,12 @@ h3 {
     .footer .container {
         flex-direction: column;
         text-align: center;
+    }
+
+    .about-illustration {
+        float: none;
+        margin: var(--spacing-lg) auto;
+        transform: rotate(2deg);
     }
 }
 
