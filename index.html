@@ -16,10 +16,13 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <span class="logo-group">
+            <div class="logo-area">
                 <a href="#" class="logo" data-panel="home">samiam</a>
-                <a href="#travel" class="logo-sailboat" data-panel="travel" aria-label="Travel">⛵</a>
-            </span>
+                <div class="sailboat-track">
+                    <span class="sailboat-trail"></span>
+                    <a href="#travel" class="logo-sailboat" data-panel="travel" aria-label="Travel">⛵</a>
+                </div>
+            </div>
             <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -50,17 +53,31 @@
         <!-- Travel Panel (Page 2 from Figma) -->
         <section id="travel" class="panel">
             <h2 class="visually-hidden">Travel</h2>
-            <div class="panel-content panel-page">
-                <div class="travel-layout">
+            <div class="panel-content">
+                <div class="travel-layout travel-layout-single">
                     <div class="travel-text">
-                        <p>I love traveling and sailing. My partner and I have sailed 9,000+ nautical miles across the Pacific and Atlantic Oceans. ⛵</p>
+                        <p>I love traveling and sailing. My partner and I have sailed 9,000+ nautical miles across the Pacific and Atlantic Oceans.</p>
                     </div>
                     <div class="travel-photos">
-                        <img src="images/travel-3.jpg" alt="Desert bay at sunset" class="photo-center">
-                        <div class="photo-stack">
-                            <img src="images/travel-2.jpg" alt="Coastal mountains" class="photo-top">
-                            <img src="images/travel-1.jpg" alt="Sailing at sunset" class="photo-bottom">
-                        </div>
+                        <img src="images/PXL_20240522_232744918.jpg" alt="Colorful spinnaker sail with orange, yellow, and red stripes billowing against a clear blue sky">
+                    </div>
+                    <!-- Island for sailboat navigation -->
+                    <span class="travel-island" aria-hidden="true">🏝️</span>
+                </div>
+
+                <div class="dashed-divider"></div>
+
+                <div class="travel-section-2">
+                    <h3>Photo Highlights</h3>
+                    <div class="photo-highlights">
+                        <img src="images/travel-3.jpg" alt="Desert bay at sunset with sailboats anchored and cacti silhouetted in foreground">
+                        <img src="images/travel-2.jpg" alt="Dramatic green coastal cliffs dropping into the sea with a sailboat anchored in the bay below">
+                        <img src="images/travel-1.jpg" alt="Person standing on sailboat deck watching a double rainbow at sunset">
+                        <img src="images/PXL_20241008_200621402.MP.jpg" alt="Dramatic volcanic peaks rising from the sea under moody clouds">
+                        <img src="images/PXL_20240522_162040021~2.jpg" alt="Person cooking in the cozy wooden galley of a sailboat">
+                        <img src="images/PXL_20240117_172121428~2.jpg" alt="Sailor at the helm wearing a sun hat with solar panels and blue ocean in background">
+                        <img src="images/PXL_20240926_031638619~2.jpg" alt="Distant sailboat on the horizon beneath dramatic clouds at dusk">
+                        <img src="images/original_d246de8c-cae3-40da-8c16-593cf21dcc3a_PXL_20240926_031019481.jpg" alt="Dog riding in a dinghy with sailboat anchored in calm waters behind">
                     </div>
                 </div>
             </div>
@@ -89,7 +106,7 @@
 
                 <div class="about-advocacy">
                     <h3>Advocacy:</h3>
-                    <p>Founder of the <a href="https://votelikeits2020.com" target="_blank" rel="noopener">VoteLikeIts2020<span class="visually-hidden"> (opens in new tab)</span></a> fundraising campaign for voter equality in America. Former Court Appointed Special Advocate (<a href="https://www.casaoc.org/" target="_blank" rel="noopener">CASA<span class="visually-hidden"> (opens in new tab)</span></a>) for the Orange County foster care system for 8 years.</p>
+                    <p>Founder of the <a href="https://votelikeits2020.threadless.com/" target="_blank" rel="noopener">VoteLikeIts2020<span class="visually-hidden"> (opens in new tab)</span></a> fundraising campaign for voter equality in America. Former Court Appointed Special Advocate (<a href="https://www.casaoc.org/" target="_blank" rel="noopener">CASA<span class="visually-hidden"> (opens in new tab)</span></a>) for the Orange County foster care system for 8 years.</p>
                 </div>
 
                 <div class="about-accomplishments">
@@ -210,6 +227,10 @@
         <section id="beyond" class="panel">
             <div class="panel-content">
                 <h2>Beyond</h2>
+
+                <div class="beyond-illustration">
+                    <img src="images/NMA_Bird_Inverted.png" alt="NMA Bird illustration">
+                </div>
 
                 <p class="beyond-intro">Occasionally I get fired up about policy and write letters advocating for things I believe in, like affordable housing and public recreational access.</p>
 
