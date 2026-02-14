@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function animateTravel(timestamp) {
             if (prefersReducedMotion) return;
-            if (!travelAnimationId) return;
 
             // Initialize
             if (!animationStart) {
@@ -103,7 +102,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const island = document.querySelector('.travel-island');
                 const textBox = document.querySelector('.travel-text');
 
-                if (!island || !textBox) return;
+                if (!island || !textBox) {
+                    // Elements not found, can't animate
+                    travelAnimationId = null;
+                    return;
+                }
 
                 const islandRect = island.getBoundingClientRect();
                 const textRect = textBox.getBoundingClientRect();
