@@ -576,6 +576,10 @@ h3 {
     font-size: 0.85em;
 }
 
+.about-advocacy p + p {
+    margin-top: var(--spacing-sm);
+}
+
 .about-accomplishments {
     margin-bottom: var(--spacing-lg);
 }
