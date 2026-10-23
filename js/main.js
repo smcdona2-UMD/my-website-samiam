@@ -447,6 +447,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 50);
         }
 
+        // Show background painting credit only on the home page
+        const bgCredit = document.querySelector('.bg-credit');
+        if (bgCredit) {
+            bgCredit.style.visibility = panelId === 'home' ? 'visible' : 'hidden';
+        }
+
         // Update active state in navigation
         document.querySelectorAll('.nav-links a[data-panel]').forEach(link => {
             link.classList.remove('active');

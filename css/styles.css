@@ -558,6 +558,15 @@ h3 {
     font-size: 0.85em;
 }
 
+.about-employment {
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-employment p {
+    margin-top: var(--spacing-xs);
+    font-size: 0.85em;
+}
+
 .about-languages {
     margin-bottom: var(--spacing-lg);
 }
@@ -589,6 +598,64 @@ h3 {
     font-size: 0.85em;
 }
 
+.accomplishments-row {
+    clear: both;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+}
+
+.accomplishments-row .about-accomplishments {
+    flex: 1;
+}
+
+.accomplishment-photos {
+    position: relative;
+    flex: 0 0 385px;
+    aspect-ratio: 340 / 440;
+    margin-top: var(--spacing-md);
+}
+
+.photo-print {
+    position: absolute;
+    background: rgba(232, 228, 220, 0.9);
+    padding: 12px 12px 20px 12px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition);
+}
+
+.photo-print img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.photo-print-1 {
+    top: 6%;
+    right: 0;
+    width: 50%;
+    transform: rotate(4deg);
+}
+
+.photo-print-2 {
+    top: 52%;
+    left: 12%;
+    width: 68%;
+    transform: rotate(-2deg);
+}
+
+.photo-print-3 {
+    top: 0;
+    left: 14%;
+    width: 48%;
+    transform: rotate(-5deg);
+}
+
+.photo-print:hover {
+    z-index: 2;
+    transform: rotate(0deg) scale(1.03);
+}
+
 .about-illustration {
     float: right;
     margin: 0 0 var(--spacing-lg) var(--spacing-xl);
@@ -597,6 +664,11 @@ h3 {
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
     transform: rotate(3deg);
     max-width: 250px;
+    transition: transform var(--transition);
+}
+
+.about-illustration:hover {
+    transform: rotate(0deg) scale(1.03);
 }
 
 .about-illustration img {
@@ -662,6 +734,12 @@ h3 {
 
 .research-block a {
     color: var(--color-text);
+}
+
+.research-note {
+    margin-top: var(--spacing-sm);
+    font-size: 0.7em;
+    color: var(--color-text-muted);
 }
 
 .scholar-link {
@@ -1028,6 +1106,17 @@ h3 {
         float: none;
         margin: var(--spacing-lg) auto;
         transform: rotate(2deg);
+    }
+
+    .accomplishments-row {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .accomplishment-photos {
+        flex: none;
+        width: min(360px, 100%);
+        margin: 0 auto var(--spacing-lg);
     }
 
     .beyond-illustration {
