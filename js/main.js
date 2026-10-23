@@ -384,36 +384,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const panels = document.querySelectorAll('.panel');
     const panelLinks = document.querySelectorAll('[data-panel]');
 
-    // Animated counter function
-    function animateCounter(element) {
-        const target = parseInt(element.dataset.target);
-        const duration = 2000;
-        const startTime = performance.now();
+    let statsScrollCheck = null;
 
-        function formatWithDigits(num, isFinal) {
-            const digits = num.toString().split('');
-            let html = digits.map(d => `<span class="digit">${d}</span>`).join('');
-            if (isFinal) {
-                html += '<span class="plus">+</span>';
+    // Teaching stats: small tickers that count up gently
+    function animateTeachingStats(container) {
+        const tickers = container.querySelectorAll('.counter-number[data-target]');
+        const duration = 3000;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function formatDigits(num, plus) {
+            let html = num.toString().split('')
+                .map(d => `<span class="digit">${d}</span>`).join('');
+            if (plus) {
+                html += '<span class="digit plus">+</span>';
             }
             return html;
         }
 
+        function setTickers(fraction, isFinal) {
+            tickers.forEach(t => {
+                const target = parseInt(t.dataset.target);
+                t.innerHTML = formatDigits(Math.floor(fraction * target), isFinal && t.hasAttribute('data-plus'));
+            });
+        }
+
+        if (reduceMotion) {
+            setTickers(1, true);
+            return;
+        }
+
+        const startTime = performance.now();
         function updateCount(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeOut = 1 - Math.pow(1 - progress, 3);
-            const current = Math.floor(easeOut * target);
-
-            element.innerHTML = formatWithDigits(current, false);
-
+            const progress = Math.min((currentTime - startTime) / duration, 1);
+            const eased = (1 - Math.cos(Math.PI * progress)) / 2;   // gentle ease in and out
+            setTickers(eased, false);
             if (progress < 1) {
                 requestAnimationFrame(updateCount);
             } else {
-                element.innerHTML = formatWithDigits(target, true);
+                setTickers(1, true);
             }
         }
-
         requestAnimationFrame(updateCount);
     }
 
@@ -431,10 +441,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Trigger counter animation on teaching panel
                 if (panelId === 'teaching') {
-                    const counter = targetPanel.querySelector('.counter-number');
+                    const counter = targetPanel.querySelector('.student-counter');
                     if (counter) {
-                        counter.innerHTML = '<span class="digit">0</span>';
-                        animateCounter(counter);
+                        // Wait until the stats scroll into view before counting
+                        counter.querySelectorAll('.counter-number').forEach(t => {
+                            t.innerHTML = '<span class="digit">0</span>';
+                        });
+                        if (statsScrollCheck) window.removeEventListener('scroll', statsScrollCheck);
+                        statsScrollCheck = function () {
+                            const rect = counter.getBoundingClientRect();
+                            if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+                                window.removeEventListener('scroll', statsScrollCheck);
+                                statsScrollCheck = null;
+                                animateTeachingStats(counter);
+                            }
+                        };
+                        window.addEventListener('scroll', statsScrollCheck, { passive: true });
+                        statsScrollCheck();
                     }
                 }
 
