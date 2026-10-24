@@ -523,6 +523,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const isExpanded = navLinks.classList.contains('active');
             navToggle.setAttribute('aria-expanded', isExpanded);
         });
+
+        // Close mobile nav when tapping outside it
+        document.addEventListener('click', function(e) {
+            if (navLinks.classList.contains('active') &&
+                !navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
     }
 
     // Handle browser back/forward

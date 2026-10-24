@@ -44,6 +44,8 @@
 
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -327,6 +329,19 @@ a:hover {
     height: 2px;
     background: var(--color-text);
     border-radius: 1px;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ========================================
@@ -334,6 +349,7 @@ a:hover {
    ======================================== */
 .main-panels {
     min-height: 100vh;
+    min-height: 100dvh;
     max-width: var(--max-width);
     margin: 0 auto;
     padding: calc(60px + var(--spacing-xl)) var(--container-padding) var(--spacing-xl);
@@ -372,6 +388,7 @@ a:hover {
    ======================================== */
 .panel-page {
     min-height: calc(100vh - 120px);
+    min-height: calc(100dvh - 120px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -655,9 +672,11 @@ h3 {
     transform: rotate(-5deg);
 }
 
-.photo-print:hover {
-    z-index: 2;
-    transform: rotate(0deg) scale(1.03);
+@media (hover: hover) {
+    .photo-print:hover {
+        z-index: 2;
+        transform: rotate(0deg) scale(1.03);
+    }
 }
 
 .about-prints {
@@ -674,8 +693,10 @@ h3 {
     transition: transform var(--transition);
 }
 
-.about-illustration:hover {
-    transform: rotate(0deg) scale(1.03);
+@media (hover: hover) {
+    .about-illustration:hover {
+        transform: rotate(0deg) scale(1.03);
+    }
 }
 
 /* NMA logo: bare line art sitting below the illustration */
@@ -693,8 +714,10 @@ h3 {
     height: auto;
 }
 
-.nma-print:hover {
-    transform: rotate(0deg) scale(1.05);
+@media (hover: hover) {
+    .nma-print:hover {
+        transform: rotate(0deg) scale(1.05);
+    }
 }
 
 .about-illustration img {
@@ -934,9 +957,11 @@ h3 {
     transform: rotate(-2deg);
 }
 
-.meme-card:hover,
-.course-with-meme:nth-of-type(even) .meme-card:hover {
-    transform: rotate(0deg) scale(1.03);
+@media (hover: hover) {
+    .meme-card:hover,
+    .course-with-meme:nth-of-type(even) .meme-card:hover {
+        transform: rotate(0deg) scale(1.03);
+    }
 }
 
 /* ========================================
@@ -1081,7 +1106,7 @@ h3 {
         left: 0;
         right: 0;
         flex-direction: column;
-        background: rgba(45, 61, 47, 0.95);
+        background: var(--color-background);
         padding: var(--spacing-md);
         gap: var(--spacing-sm);
         display: none;
@@ -1101,6 +1126,7 @@ h3 {
 
     .panel-page {
         min-height: calc(100vh - 100px);
+        min-height: calc(100dvh - 100px);
     }
 
     #home.panel-active {
